@@ -1,6 +1,6 @@
 // 안 필요할 수도
 
-import React from "react";
+import React from 'react';
 
 interface ButtonProps {
   text: string;

@@ -1,25 +1,25 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { useAuth } from "../contexts/AuthContext";
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useAuth } from '../contexts/AuthContext';
 
 const Login = () => {
   const { login } = useAuth();
   const navigate = useNavigate();
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-  const isFormValid = password.trim() != "" && email.trim() != "";
+  const isFormValid = password.trim() != '' && email.trim() != '';
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ password, email }); // 테스트
+    // console.log({ password, email }); // 테스트
 
     try {
       await login({ email, password });
-      navigate("/"); // Redirect to home on success
-    } catch (err: any) {
-      alert("로그인에 실패했습니다.");
+      navigate('/'); // Redirect to home on success
+    } catch (_err: unknown) {
+      alert('로그인에 실패했습니다.');
     }
     return;
     // login()함수 호출해야함
@@ -51,7 +51,7 @@ const Login = () => {
         </div>
         <div>
           <p> 아직 회원이 아니신가요? </p>
-          <Link to={"/signup"}>회원가입</Link>
+          <Link to={'/signup'}>회원가입</Link>
         </div>
         <button type="submit" disabled={!isFormValid}>
           로그인
