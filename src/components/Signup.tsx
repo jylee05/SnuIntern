@@ -24,7 +24,7 @@ const Signup = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ name, password, email: `${email}@snu.ac.kr` }); // 테스트
+    console.log({ name, password, email }); // 테스트
 
     try {
       await signUp({ name, email, password });
@@ -82,7 +82,7 @@ const Signup = () => {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          <span>@snu.ac.kr</span>
+          {/* <span>@snu.ac.kr</span> */}
         </div>
 
         <button type="submit" disabled={!isFormValid}>

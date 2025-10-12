@@ -19,7 +19,7 @@ const Topbar = () => {
       <Link to={"/"}>스누인턴</Link>
       {user ? (
         <>
-          <span>{user.id}님</span>
+          <span>{user.name}님</span>
           <button onClick={handleLogout}>로그아웃</button>
         </>
       ) : (

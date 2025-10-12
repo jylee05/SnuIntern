@@ -13,7 +13,7 @@ const Login = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log({ password, email: `${email}@snu.ac.kr` }); // 테스트
+    console.log({ password, email }); // 테스트
 
     try {
       await login({ email, password });
@@ -27,7 +27,7 @@ const Login = () => {
 
   return (
     <div>
-      <h1>로그인</h1>;
+      <h1>로그인</h1>
       <form onSubmit={handleSubmit}>
         <div>
           <div>
@@ -38,7 +38,7 @@ const Login = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             />
-            <span>@snu.ac.kr</span>
+            {/* <span>@snu.ac.kr</span> */}
           </div>
 
           <label>비밀번호</label>
@@ -57,7 +57,6 @@ const Login = () => {
           로그인
         </button>
       </form>
-      ;
     </div>
   );
 };
