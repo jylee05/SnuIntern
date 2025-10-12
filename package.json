@@ -13,7 +13,6 @@
     "check-all": "yarn check:types && yarn check:format && yarn check:unused"
   },
   "dependencies": {
-    "@types/react-router-dom": "^5.3.3",
     "axios": "^1.12.2",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

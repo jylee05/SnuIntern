@@ -1,14 +1,15 @@
-import React, {
-  createContext,
-  useState,
-  useContext,
-  useEffect,
+import {
   type ReactNode,
+  createContext,
+  /* useContext,*/
+  useEffect,
+  useState,
 } from 'react';
 import apiClient from '../api';
 import type { LoginData, SignupData } from '../types/types';
 
-export interface User {
+/* 통합 시 export 주석 해제하기  */
+/*export*/ interface User {
   id: string;
   name: string;
   email: string;
@@ -16,7 +17,7 @@ export interface User {
 }
 
 // 인증 상태(isLogined) 관리 위한 context의 type
-export interface AuthContextType {
+/*export*/ interface AuthContextType {
   user: User | null;
   isLoading: boolean; // api 응답이 왔는지의 여부
   /* signup, login api 요청들 : 
@@ -112,12 +113,12 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   // end of AuthProvider
 };
 
-// custom Hook -> 다른 컴포넌트들에서 사용
-export const useAuth = () => {
-  const context = useContext(AuthContext);
-  if (context === undefined) {
-    throw new Error('useAuth는 AuthProvider 안에서 사용되어야 함');
-  }
-  return context;
-  // end of useAuth
-};
+// // custom Hook -> 다른 컴포넌트들에서 사용
+// export const useAuth = () => {
+//   const context = useContext(AuthContext);
+//   if (context === undefined) {
+//     throw new Error('useAuth는 AuthProvider 안에서 사용되어야 함');
+//   }
+//   return context;
+//   // end of useAuth
+// };
