@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
+
+// logic.ts import 해야함
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -15,9 +21,18 @@ const Signup = () => {
 
   const isPasswordSame = password === confirmPassword;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
     console.log({ name, password, email: `${email}@snu.ac.kr` }); // 테스트
+
+    try {
+      await signUp({ name, email, password });
+      navigate("/"); // Redirect to home on success
+    } catch (err: any) {
+      alert("회원가입에 실패했습니다.");
+    }
     return;
+    // singup()함수 호출해야함
   };
 
   <div>
@@ -50,6 +65,12 @@ const Signup = () => {
           onChange={(e) => setConfirmPassword(e.target.value)}
         />
         {/* 비밀번호와 다르면 에러 메시지 밑에 추가 */}
+        {confirmPassword && !isPasswordSame && (
+          <p style={{ color: "red", fontSize: "14px" }}>
+            비밀번호가 일치하지 않습니다
+          </p>
+        )}
+        {/* 비밇번호 평가 */}
       </div>
       <div>
         <label>이메일</label>

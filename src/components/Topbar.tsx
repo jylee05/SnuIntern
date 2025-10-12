@@ -1,20 +1,26 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 // global state login import 해야함
 // user type? import 해야함
 // logic.ts import -> logout 처리
 
 const Topbar = () => {
-  const { user, isLogined } = useAuth(); // user type 알아야함
+  const navigate = useNavigate();
+  const { user, logout } = useAuth();
+
+  const handleLogout = async () => {
+    await logout();
+    navigate("/"); // 로그아웃 이후 홈으로 이동
+  };
 
   return (
     <div>
       <Link to={"/"}>스누인턴</Link>
-      {isLogined ? (
+      {user ? (
         <>
           <span>{user}님</span>
-          <button onClick={Logout}>로그아웃</button> {/* Logout 처리 해야함 */}
+          <button onClick={handleLogout}>로그아웃</button>
         </>
       ) : (
         <>
