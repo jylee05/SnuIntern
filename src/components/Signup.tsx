@@ -6,6 +6,7 @@ import { useAuth } from "../contexts/AuthContext";
 
 const Signup = () => {
   const navigate = useNavigate();
+  const { signUp } = useAuth();
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
@@ -35,59 +36,61 @@ const Signup = () => {
     // singup()함수 호출해야함
   };
 
-  <div>
-    <h1>회원가입</h1>
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>이름</label>
-        <br />
-        <input
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>비밀번호</label>
-        <br />
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>비밀번호 확인</label>
-        <br />
-        <input
-          type="text"
-          value={confirmPassword}
-          onChange={(e) => setConfirmPassword(e.target.value)}
-        />
-        {/* 비밀번호와 다르면 에러 메시지 밑에 추가 */}
-        {confirmPassword && !isPasswordSame && (
-          <p style={{ color: "red", fontSize: "14px" }}>
-            비밀번호가 일치하지 않습니다
-          </p>
-        )}
-        {/* 비밇번호 평가 */}
-      </div>
-      <div>
-        <label>이메일</label>
-        <br />
-        <input
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-        <span>@snu.ac.kr</span>
-      </div>
+  return (
+    <div>
+      <h1>회원가입</h1>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>이름</label>
+          <br />
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>비밀번호</label>
+          <br />
+          <input
+            type="text"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+          />
+        </div>
+        <div>
+          <label>비밀번호 확인</label>
+          <br />
+          <input
+            type="text"
+            value={confirmPassword}
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          />
+          {/* 비밀번호와 다르면 에러 메시지 밑에 추가 */}
+          {confirmPassword && !isPasswordSame && (
+            <p style={{ color: "red", fontSize: "14px" }}>
+              비밀번호가 일치하지 않습니다
+            </p>
+          )}
+          {/* 비밇번호 평가 */}
+        </div>
+        <div>
+          <label>이메일</label>
+          <br />
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <span>@snu.ac.kr</span>
+        </div>
 
-      <button type="submit" disabled={!isFormValid}>
-        회원가입
-      </button>
-    </form>
-  </div>;
+        <button type="submit" disabled={!isFormValid}>
+          회원가입
+        </button>
+      </form>
+    </div>
+  );
 };
 
 export default Signup;

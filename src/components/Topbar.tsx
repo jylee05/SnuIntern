@@ -1,4 +1,4 @@
-import React from "react";
+// import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
 // global state login import 해야함
@@ -19,7 +19,7 @@ const Topbar = () => {
       <Link to={"/"}>스누인턴</Link>
       {user ? (
         <>
-          <span>{user}님</span>
+          <span>{user.id}님</span>
           <button onClick={handleLogout}>로그아웃</button>
         </>
       ) : (

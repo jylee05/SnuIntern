@@ -25,39 +25,41 @@ const Login = () => {
     // login()함수 호출해야함
   };
 
-  <div>
-    <h1>로그인</h1>;
-    <form onSubmit={handleSubmit}>
-      <div>
+  return (
+    <div>
+      <h1>로그인</h1>;
+      <form onSubmit={handleSubmit}>
         <div>
-          <label>이메일</label>
+          <div>
+            <label>이메일</label>
+            <br />
+            <input
+              type="text"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <span>@snu.ac.kr</span>
+          </div>
+
+          <label>비밀번호</label>
           <br />
           <input
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
           />
-          <span>@snu.ac.kr</span>
         </div>
-
-        <label>비밀번호</label>
-        <br />
-        <input
-          type="text"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <div>
-        <p> 아직 회원이 아니신가요? </p>
-        <Link to={"/signup"}>회원가입</Link>
-      </div>
-      <button type="submit" disabled={!isFormValid}>
-        로그인
-      </button>
-    </form>
-    ;
-  </div>;
+        <div>
+          <p> 아직 회원이 아니신가요? </p>
+          <Link to={"/signup"}>회원가입</Link>
+        </div>
+        <button type="submit" disabled={!isFormValid}>
+          로그인
+        </button>
+      </form>
+      ;
+    </div>
+  );
 };
 
 export default Login;
