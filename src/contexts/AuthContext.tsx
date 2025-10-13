@@ -85,6 +85,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       password: data.password,
     });
     const { token } = response.data;
+
     // 로그인 상태
     localStorage.setItem('authToken', token);
 
@@ -94,15 +95,19 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
   };
 
   /* 로그아웃 함수 */
-  const logout = async () => {
-    try {
-      await apiClient.delete('/api/auth/user/session');
-    } catch (error) {
-      console.error('로그아웃 실패 - 클라이언트 측 정보 지우기만 진행', error);
-    } finally {
-      localStorage.removeItem('authToken');
-      setUser(null);
-    }
+  const logout = () => {
+    // try {
+    //   await apiClient.delete("/api/auth/user/session");
+    // } catch (error) {
+    //   console.error("로그아웃 실패 - 클라이언트 측 정보 지우기만 진행", error);
+    // } finally {
+    //   localStorage.removeItem("authToken");
+    //   setUser(null);
+    // }
+
+    // 클라이언트 토큰 값만 삭제
+    localStorage.removeItem('authToken');
+    setUser(null);
   };
 
   return (

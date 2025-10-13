@@ -2,9 +2,7 @@
 
 const Home = () => {
   return (
-    <div>
-      <h1>홈페이지 테스트</h1>
-    </div>
+    <div className="text-center">{/* <h1>스누인턴 홈페이지 입니다</h1> */}</div>
   );
 };
 

@@ -15,19 +15,25 @@ const Topbar = () => {
   };
 
   return (
-    <div>
-      <Link to={'/'}>스누인턴</Link>
-      {user ? (
-        <>
-          <span>{user.name}님</span>
-          <button onClick={handleLogout}>로그아웃</button>
-        </>
-      ) : (
-        <>
-          <Link to={'/signup'}>회원가입</Link>
-          <Link to={'/login'}>로그인</Link>
-        </>
-      )}
+    <div className="topbar">
+      <Link to={'/'} className="topbar-logo">
+        스누인턴
+      </Link>
+      <div className="topbar-auth">
+        {user ? (
+          <>
+            <span>{user.name}님</span>
+            <button onClick={handleLogout} className="btn">
+              로그아웃
+            </button>
+          </>
+        ) : (
+          <>
+            <Link to={'/signup'}>회원가입</Link>
+            <Link to={'/login'}>로그인</Link>
+          </>
+        )}
+      </div>
     </div>
   );
 };

@@ -37,32 +37,29 @@ const Signup = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h1>회원가입</h1>
       <form onSubmit={handleSubmit}>
-        <div>
+        <div className="form-group">
           <label>이름</label>
-          <br />
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>비밀번호</label>
-          <br />
           <input
-            type="text"
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div>
+        <div className="form-group">
           <label>비밀번호 확인</label>
-          <br />
           <input
-            type="text"
+            type="password"
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
           />
@@ -72,20 +69,17 @@ const Signup = () => {
               비밀번호가 일치하지 않습니다
             </p>
           )}
-          {/* 비밇번호 평가 */}
         </div>
-        <div>
+        <div className="form-group">
           <label>이메일</label>
-          <br />
           <input
-            type="text"
+            type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-          {/* <span>@snu.ac.kr</span> */}
         </div>
 
-        <button type="submit" disabled={!isFormValid}>
+        <button type="submit" disabled={!isFormValid} className="btn btn-block">
           회원가입
         </button>
       </form>
