@@ -17,6 +17,7 @@ const Login = () => {
 
     try {
       await login({ email, password });
+
       navigate('/'); // Redirect to home on success
     } catch (_err: unknown) {
       alert('로그인에 실패했습니다.');
@@ -26,34 +27,33 @@ const Login = () => {
   };
 
   return (
-    <div>
+    <div className="form-container">
       <h1>로그인</h1>
       <form onSubmit={handleSubmit}>
-        <div>
-          <div>
-            <label>이메일</label>
-            <br />
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            />
-            {/* <span>@snu.ac.kr</span> */}
-          </div>
-
-          <label>비밀번호</label>
-          <br />
+        <div className="form-group">
+          <label>이메일</label>
           <input
-            type="text"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+        </div>
+
+        <div className="form-group">
+          <label>비밀번호</label>
+          <input
+            type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
-        <div>
-          <p> 아직 회원이 아니신가요? </p>
-          <Link to={'/signup'}>회원가입</Link>
+        <div className="text-center mt-1">
+          <p>
+            {' '}
+            아직 회원이 아니신가요? <Link to={'/signup'}>회원가입</Link>
+          </p>
         </div>
-        <button type="submit" disabled={!isFormValid}>
+        <button type="submit" disabled={!isFormValid} className="btn btn-block">
           로그인
         </button>
       </form>

@@ -2,6 +2,7 @@ import axios from 'axios';
 
 const apiClient = axios.create({
   baseURL: 'https://api-internhasha.wafflestudio.com',
+  // withCredentials: true, // refresh_token 첨부
 });
 // 인증 토큰 필요 X인 endpoint들
 const publicPaths = [
@@ -21,6 +22,7 @@ apiClient.interceptors.request.use(
 
     if (!isPublicPath) {
       const token = localStorage.getItem('authToken');
+
       if (token) {
         config.headers.Authorization = `Bearer ${token}`;
       }
