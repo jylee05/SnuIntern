@@ -20,6 +20,16 @@ body {
   min-height: 100vh;
 }
 
+.col {
+  display: flex;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
 main {
   flex: 1;
   display: flex;
