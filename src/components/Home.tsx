@@ -22,7 +22,7 @@ const Home = () => {
 
   const DEV: string[] = ['FRONT', 'APP', 'BACKEND', 'OTHERS'];
 
-  const { posts, isLoading, fetchPosts, paginator } = usePosts();
+  const { fetchPosts } = usePosts();
   const [panelExpanded, setPanelExpanded] = useState(false);
   const [roles, setRoles] = useState<string[]>([]);
 
