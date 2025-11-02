@@ -1,4 +1,11 @@
-import { type ReactNode, createContext, useContext, useState } from 'react';
+import {
+  type ReactNode,
+  createContext,
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+} from 'react';
 import apiClient from '../api';
 
 interface Post {
@@ -91,7 +98,7 @@ export const PostProvider = ({ children }: PostProviderProps) => {
   const [paginator, setPaginator] = useState<number>(0);
   const [isLoading, setIsLoading] = useState(false);
 
-  const fetchPosts = async (query: string) => {
+  const fetchPosts = useCallback(async (query: string) => {
     setIsLoading(true);
     try {
       const url = `/api/post?${query}`;
@@ -117,13 +124,17 @@ export const PostProvider = ({ children }: PostProviderProps) => {
     } finally {
       setIsLoading(false);
     }
-  };
-
-  return (
-    <PostContext.Provider value={{ posts, paginator, isLoading, fetchPosts }}>
-      {children}
-    </PostContext.Provider>
+  }, []);
+  const value = useMemo(
+    () => ({
+      posts,
+      isLoading,
+      paginator,
+      fetchPosts,
+    }),
+    [posts, isLoading, paginator, fetchPosts]
   );
+  return <PostContext.Provider value={value}>{children}</PostContext.Provider>;
 };
 
 export const usePosts = () => {

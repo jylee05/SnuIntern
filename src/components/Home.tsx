@@ -1,7 +1,6 @@
 import { type ChangeEvent, useEffect, useState } from 'react';
 import { FaAngleDown, FaAngleUp, FaArrowRotateRight } from 'react-icons/fa6';
 import styles from '../Home.module.css';
-// import React from "react";
 // import { useAuth } from '../contexts/AuthContext';
 import { encodeQueryParams, usePosts } from '../contexts/postContext';
 
@@ -50,10 +49,10 @@ const Home = () => {
   useEffect(() => {
     const q: string = encodeQueryParams({
       params: {
-        roles: `${roles.length === 0 ? null : roles}`,
-        isActive: `${isActive}`,
-        domains: `${domains.length === 0 ? null : domains}`,
-        order: `${order}`,
+        roles: roles.length === 0 ? null : roles,
+        isActive: isActive,
+        domains: domains.length === DOMAINS.length ? null : domains,
+        order: order,
       },
     });
     setQuery(q);
@@ -89,6 +88,10 @@ const Home = () => {
     setRoles([]);
     setDomain(DOMAINS);
     setOrder(0);
+
+    setRecStatus('all');
+    setDmStatus(DOMAINS);
+    setOrderStatus(0);
   };
 
   return (
@@ -111,6 +114,7 @@ const Home = () => {
           <section className="col">
             <h3>개발</h3>
             <div className="row">
+              <label htmlFor="check-dev-total">전체</label>
               <input
                 type="checkbox"
                 id="check-dev-total"
@@ -118,9 +122,9 @@ const Home = () => {
                 value="total"
                 onChange={handleRoleCheck}
               ></input>
-              <label htmlFor="check-dev-total">전체</label>
             </div>
             <div className="row">
+              <label htmlFor="check-dev-front">프론트엔드 개발</label>
               <input
                 type="checkbox"
                 id=""
@@ -128,9 +132,9 @@ const Home = () => {
                 value="FRONT"
                 onChange={handleRoleCheck}
               ></input>
-              <label htmlFor="check-dev-front">프론트엔드 개발</label>
             </div>
             <div className="row">
+              <label htmlFor="check-dev-backend">서버⋅백엔드 개발</label>
               <input
                 type="checkbox"
                 id="check-dev-backend"
@@ -138,9 +142,9 @@ const Home = () => {
                 value="BACKEND"
                 onChange={handleRoleCheck}
               ></input>
-              <label htmlFor="check-dev-backend">서버⋅백엔드 개발</label>
             </div>
             <div className="row">
+              <label htmlFor="check-dev-app">앱 개발</label>
               <input
                 type="checkbox"
                 id="check-dev-app"
@@ -148,9 +152,9 @@ const Home = () => {
                 value="APP"
                 onChange={handleRoleCheck}
               ></input>
-              <label htmlFor="check-dev-app">앱 개발</label>
             </div>
             <div className="row">
+              <label htmlFor="check-dev-others">기타 분야</label>
               <input
                 type="checkbox"
                 id="check-dev-others"
@@ -158,43 +162,48 @@ const Home = () => {
                 value="OTHERS"
                 onChange={handleRoleCheck}
               ></input>
-              <label htmlFor="check-dev-others">기타 분야</label>
             </div>
           </section>
 
           <section>
             <h3>기획</h3>
-            <input
-              type="checkbox"
-              id="project-total"
-              name="PLANNING"
-              value="PLANNING"
-              onChange={handleRoleCheck}
-            ></input>
-            <label htmlFor="project-total">전체</label>
+            <div className="row">
+              <label htmlFor="project-total">전체</label>
+              <input
+                type="checkbox"
+                id="project-total"
+                name="PLANNING"
+                value="PLANNING"
+                onChange={handleRoleCheck}
+              ></input>
+            </div>
           </section>
 
           <section>
             <h3>디자인</h3>
-            <input
-              type="checkbox"
-              id="design-total"
-              name="DESIGN"
-              value="DESIGN"
-              onChange={handleRoleCheck}
-            ></input>
-            <label htmlFor="design-total">전체</label>
+            <div className="row">
+              <label htmlFor="design-total">전체</label>
+              <input
+                type="checkbox"
+                id="design-total"
+                name="DESIGN"
+                value="DESIGN"
+                onChange={handleRoleCheck}
+              ></input>
+            </div>
           </section>
           <section>
             <h3>마케팅</h3>
-            <input
-              type="checkbox"
-              id="marketing-total"
-              name="MARKETING"
-              value="MARKETING"
-              onChange={handleRoleCheck}
-            ></input>
-            <label htmlFor="marketing-total">전체</label>
+            <div className="row">
+              <label htmlFor="marketing-total">전체</label>
+              <input
+                type="checkbox"
+                id="marketing-total"
+                name="MARKETING"
+                value="MARKETING"
+                onChange={handleRoleCheck}
+              ></input>
+            </div>
           </section>
         </div>
       )}
@@ -269,99 +278,119 @@ const Home = () => {
           {dmExpanded && (
             <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
               <div className={styles.modalOptions}>
-                <label htmlFor="all">전체</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="all"
-                  value="all"
-                  checked={
-                    dmStatus.length === DOMAINS.length &&
-                    DOMAINS.every((d) => dmStatus.includes(d))
-                  }
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="fin">핀테크</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="fin"
-                  value="FINTECH"
-                  checked={dmStatus?.includes('FINTECH')}
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="ht">헬스테크</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="ht"
-                  value="HEALTHTECH"
-                  checked={dmStatus?.includes('HEALTHTECH')}
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="ed">교육</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="ed"
-                  value="EDUCATION"
-                  checked={dmStatus?.includes('EDUCATION')}
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="ec">이커머스</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="ec"
-                  value="ECOMMERCE"
-                  checked={dmStatus?.includes('ECOMMERCE')}
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="ft">푸드테크</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="ft"
-                  value="FOODTECH"
-                  checked={dmStatus?.includes('FOODTECH')}
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="mb">모빌리티</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="mb"
-                  value="MOBILITY"
-                  checked={dmStatus?.includes('MOBILITY')}
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="con">컨텐츠</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="con"
-                  value="CONTENTS"
-                  checked={dmStatus?.includes('CONTENTS')}
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="b2b">B2B</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="b2b"
-                  value="B2B"
-                  checked={dmStatus?.includes('B2B')}
-                  onChange={handleDomainCheck}
-                />
-                <label htmlFor="others">기타</label>
-                <input
-                  type="checkbox"
-                  name="dmStatus"
-                  id="others"
-                  value="OTHERS"
-                  checked={dmStatus?.includes('OTHERS')}
-                  onChange={handleDomainCheck}
-                />
+                <div className="row">
+                  <label htmlFor="all">전체</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="all"
+                    value="all"
+                    checked={
+                      dmStatus.length === DOMAINS.length &&
+                      DOMAINS.every((d) => dmStatus.includes(d))
+                    }
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="fin">핀테크</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="fin"
+                    value="FINTECH"
+                    checked={dmStatus?.includes('FINTECH')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="ht">헬스테크</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="ht"
+                    value="HEALTHTECH"
+                    checked={dmStatus?.includes('HEALTHTECH')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="ed">교육</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="ed"
+                    value="EDUCATION"
+                    checked={dmStatus?.includes('EDUCATION')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="ec">이커머스</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="ec"
+                    value="ECOMMERCE"
+                    checked={dmStatus?.includes('ECOMMERCE')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="ft">푸드테크</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="ft"
+                    value="FOODTECH"
+                    checked={dmStatus?.includes('FOODTECH')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="mb">모빌리티</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="mb"
+                    value="MOBILITY"
+                    checked={dmStatus?.includes('MOBILITY')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="con">컨텐츠</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="con"
+                    value="CONTENTS"
+                    checked={dmStatus?.includes('CONTENTS')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="b2b">B2B</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="b2b"
+                    value="B2B"
+                    checked={dmStatus?.includes('B2B')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
+                <div className="row">
+                  <label htmlFor="others">기타</label>
+                  <input
+                    type="checkbox"
+                    name="dmStatus"
+                    id="others"
+                    value="OTHERS"
+                    checked={dmStatus?.includes('OTHERS')}
+                    onChange={handleDomainCheck}
+                  />
+                </div>
               </div>
               <div className={styles.modalActions}>
                 <button
