@@ -2,7 +2,7 @@ import { type ChangeEvent, useEffect, useState } from 'react';
 import { FaAngleDown, FaAngleUp, FaArrowRotateRight } from 'react-icons/fa6';
 import styles from '../Home.module.css';
 // import { useAuth } from '../contexts/AuthContext';
-import { encodeQueryParams, usePosts } from '../contexts/postContext';
+import { encodeQueryParams, usePosts } from '../contexts/PostContext';
 
 const Home = () => {
   const DOMAINS: string[] = [
