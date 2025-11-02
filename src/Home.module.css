@@ -1,0 +1,163 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  padding: 16px 30px;
+}
+
+.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 16px 24px 16px 24px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  border: none;
+  outline: none;
+  transition: 0.4s;
+  justify-content: space-between;
+
+  font-size: 18px;
+  font-weight: 700
+}
+
+
+.active, .accordion:hover {
+  background-color: #ccc; 
+}
+
+.panel {
+  padding: 0 18px;
+  background-color: white;
+  overflow: hidden;
+}
+
+ul.chips {
+  margin: 30px 0 50px;
+  list-style: none;
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  padding: 0px 16px 16px 16px;
+}
+
+.chip {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 6px;
+  font-size: 12px;
+  float:left;
+  border: 1px solid #F1F2F5;
+  border-radius: 14px;
+  padding:16px 8px;
+  font-size: 14px;
+ }
+
+ .resetChip {
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-right: 6px;
+  font-size: 12px;
+  float:left;
+  padding:16px 8px;
+  font-size: 14px;    
+  border: none;
+ }
+
+ /* MODALS */
+ .modalTrigger {
+    position: relative;
+ }
+ .modal {
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding:16px;
+    width: 250px;
+    z-index: 1000;
+    cursor: default;
+ }
+
+ .modalOptions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 16px;
+ }
+.radioLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+.modalOptions label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+}
+
+/* If your JSX uses a plain `className="row"`, define that globally in `src/style.css`.
+   Prefer using `styles.row` (CSS modules) instead; see `Home.tsx` for where .row is used. */
+ .modalActions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    border-top: 1px solid #f0f0f0;
+    padding-top: 16px;
+ }
+.btn {
+    border: none;
+    border-radius: 6px;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+}
+.btnReset {
+    background-color: #f1f2f5;
+    color: #555;
+}
+.btnApply {
+    background-color: #333;
+    color: white;
+}
+
+.radioLabel input[type="radio"] {
+    display: none;
+}
+.radioVisual {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid #ccc;
+    display: grid;
+    place-items: center;
+    transition: all 0.2s;
+}
+.radioVisual::before { /* inner dot */
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50px;
+    background-color: #555;
+    transform: scale(0);
+    transition: all 0.2s;
+}
+.radioLabel input[type="radio"]:checked + .radioVisual {
+    border-color: #555;
+}
+.radioLabel input[type="radio"]:checked + .radioVisual::before {
+    transform: scale(1);
+}
+
+/* input[type="checkbox"] {
+
+} */
