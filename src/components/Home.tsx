@@ -79,7 +79,7 @@ const Home = () => {
         isActive: isActive,
         domains: domains.length === DOMAINS.length ? null : domains, // if null -> all domains
         order: order,
-        page: currentPage,
+        page: currentPage - 1,
       },
     });
     setQuery(q);
@@ -95,6 +95,7 @@ const Home = () => {
         return p.filter((v) => v !== value);
       });
     }
+    setCurrentPage(1);
   };
   // domain check
   const handleDomainCheck = (e: ChangeEvent<HTMLInputElement>) => {
@@ -123,6 +124,7 @@ const Home = () => {
     setRecStatus('all');
     setDmStatus(DOMAINS);
     setOrderStatus(0);
+    setCurrentPage(1);
   };
 
   const renderPageNumbers = () => {
@@ -324,6 +326,7 @@ const Home = () => {
                         onClick={() => {
                           setIsActive(recStatus === 'recruiting');
                           setOpenDropdown(null);
+                          setCurrentPage(1);
                         }}
                       >
                         적용
@@ -473,6 +476,7 @@ const Home = () => {
                         onClick={() => {
                           setDomain(dmStatus);
                           setOpenDropdown(null);
+                          setCurrentPage(1);
                         }}
                       >
                         적용
@@ -531,6 +535,7 @@ const Home = () => {
                         onClick={() => {
                           setOrder(orderStatus);
                           setOpenDropdown(null);
+                          setCurrentPage(1);
                         }}
                       >
                         적용
