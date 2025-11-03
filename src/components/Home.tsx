@@ -117,7 +117,6 @@ const Home = () => {
   const handleReset = () => {
     // reset 모집 상태 selection and other filters
     setIsActive(false);
-    setRoles([]);
     setDomain(DOMAINS);
     setOrder(0);
 
@@ -190,7 +189,7 @@ const Home = () => {
                 <label htmlFor="check-dev-front">프론트엔드 개발</label>
                 <input
                   type="checkbox"
-                  id=""
+                  id="check-dev-front"
                   name="check-dev-front"
                   value="FRONT"
                   onChange={handleRoleCheck}
