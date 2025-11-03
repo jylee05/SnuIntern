@@ -22,7 +22,7 @@ const Home = () => {
 
   const DEV: string[] = ['FRONT', 'APP', 'BACKEND', 'OTHERS'];
 
-  const { fetchPosts } = usePosts();
+  const { posts, isLoading, fetchPosts, paginator } = usePosts();
   const [panelExpanded, setPanelExpanded] = useState(false);
   const [roles, setRoles] = useState<string[]>([]);
 
@@ -127,6 +127,35 @@ const Home = () => {
     setDmStatus(DOMAINS);
     setOrderStatus(0);
     setCurrentPage(1);
+  };
+
+  const renderPageNumbers = () => {
+    const pageNumbers = [];
+    const pageBlockSize = 5;
+
+    const currentBlock = Math.ceil(currentPage / pageBlockSize);
+
+    const startPage = (currentBlock - 1) * pageBlockSize + 1;
+    const endPage = startPage + pageBlockSize - 1;
+
+    for (let i = startPage; i <= endPage; i++) {
+      const isDisabled = i > totalPages;
+
+      pageNumbers.push(
+        <button
+          key={i}
+          onClick={() => !isDisabled && handlePageChange(i)}
+          disabled={isDisabled}
+          className={`
+           ${currentPage === i ? styles.activePage : ''}
+            ${isDisabled ? styles.disabledPage : ''} 
+            `}
+        >
+          {i}
+        </button>
+      );
+    }
+    return pageNumbers;
   };
 
   const renderPageNumbers = () => {
