@@ -108,7 +108,7 @@ export const PostProvider = ({ children }: PostProviderProps) => {
     try {
       const url = `/api/post?${query}`;
       const response = await apiClient.get<{
-        posts: ApiPost[];
+        posts: ApiPost[]; // posts stored in array
         paginator: { lastpage: number };
       }>(url);
       setPaginator(response.data.paginator.lastpage);
