@@ -88,7 +88,8 @@ const Home = () => {
   const handleRoleCheck = (e: ChangeEvent<HTMLInputElement>) => {
     const { checked, value } = e.currentTarget;
     if (value === 'total') {
-      if (checked) setRoles((p) => [...DEV, ...p.filter((v) => !DEV.includes(v))]);
+      if (checked)
+        setRoles((p) => [...DEV, ...p.filter((v) => !DEV.includes(v))]);
       else setRoles((p) => [...p.filter((v) => !DEV.includes(v))]);
     } else {
       setRoles((p) => {
@@ -594,10 +595,18 @@ const Home = () => {
             >
               <p>로그인이 필요한 기능입니다.</p>
               <div className={styles.modalActions}>
-                <button type="button" className={`${styles.btn} ${styles.btnReset}`} onClick={() => setIsModalOpen(false)}>
+                <button
+                  type="button"
+                  className={`${styles.btn} ${styles.btnReset}`}
+                  onClick={() => setIsModalOpen(false)}
+                >
                   뒤로가기
                 </button>
-                <button type="button" className={`${styles.btn} ${styles.btnApply}`} onClick={() => navigate('/login')}>
+                <button
+                  type="button"
+                  className={`${styles.btn} ${styles.btnApply}`}
+                  onClick={() => navigate('/login')}
+                >
                   로그인하기
                 </button>
               </div>
