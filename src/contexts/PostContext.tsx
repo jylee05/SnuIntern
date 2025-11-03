@@ -6,10 +6,10 @@ import {
   useEffect,
   useMemo,
   useState,
-} from "react";
-import apiClient from "../api";
-import type { Post } from "../types/types";
-import { useAuth } from "./AuthContext";
+} from 'react';
+import apiClient from '../api';
+import type { Post } from '../types/types';
+import { useAuth } from './AuthContext';
 
 interface ApiAuthor {
   id: string;
@@ -126,7 +126,7 @@ export const PostProvider = ({ children }: PostProviderProps) => {
       }));
       setPosts(formattedPosts);
     } catch (error) {
-      console.error("Failed to fetch posts:", error);
+      console.error('Failed to fetch posts:', error);
       setPosts(null);
     } finally {
       setIsLoading(false);
@@ -158,8 +158,8 @@ export const PostProvider = ({ children }: PostProviderProps) => {
           await apiClient.post(`/api/post/${postId}/bookmark`);
         }
       } catch (error) {
-        console.error("북마크 처리 실패:", error);
-        alert("북마크 처리에 실패했습니다.");
+        console.error('북마크 처리 실패:', error);
+        alert('북마크 처리에 실패했습니다.');
         // API 호출 실패 시, 상태를 원래대로 되돌림
         setPosts(originalPosts);
       }
@@ -183,7 +183,7 @@ export const PostProvider = ({ children }: PostProviderProps) => {
 export const usePosts = () => {
   const context = useContext(PostContext);
   if (context === undefined) {
-    throw new Error("usePosts must be used within a PostProvider");
+    throw new Error('usePosts must be used within a PostProvider');
   }
   return context;
 };
