@@ -1,5 +1,8 @@
 .container {
+  width: 768px;
+  margin: 0rem auto auto;
   padding: 2rem;
+  border-radius: 8px;
 }
 
 .title {
@@ -25,10 +28,14 @@
   border-bottom: 2px solid transparent;
 }
 
+.menu button:hover {
+  background-color: #f0f0f0;
+}
+
 .menu button.active {
   color: #333;
   font-weight: bold;
-  border-bottom: 2px solid royalblue;
+  border-bottom: 2px solid #ccc;
 }
 
 .content {

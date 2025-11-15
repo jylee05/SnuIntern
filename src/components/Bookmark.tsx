@@ -39,8 +39,6 @@ const Bookmark = () => {
     return <p>로딩 중...</p>;
   }
 
-
-  console.log(bookmarkedPosts)
   if (!bookmarkedPosts || bookmarkedPosts.length === 0) {
     return <p>관심공고가 없습니다.</p>;
   }
@@ -52,16 +50,25 @@ const Bookmark = () => {
         return (
           <div key={post.id} className={styles.card}>
             <div className={styles.header}>
-              <FaBookmark color="royalblue" />
+              <FaBookmark color="gray" />
               <h4 className={styles.companyName}>{post.companyName}</h4>
             </div>
-            <h3 className={styles.positionTitle}>{post.positionTitle}</h3>
-            <div className={styles.footer}>
-              <span
-                className={dDay === '마감' ? styles.deadline : styles.recruiting}
-              >
-                {dDay}
-              </span>
+
+            <div className={styles.details}>
+              <h3 className={styles.positionTitle}>
+                {post.positionTitle.length > 30
+                  ? `${post.positionTitle.substring(0, 30)}...`
+                  : post.positionTitle}
+              </h3>
+              <div className={styles.footer}>
+                <span
+                  className={
+                    dDay === '마감' ? styles.deadline : styles.recruiting
+                  }
+                >
+                  {dDay}
+                </span>
+              </div>
             </div>
           </div>
         );

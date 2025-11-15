@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import Bookmark from './Bookmark';
 import styles from '../MyPage.module.css';
+import Bookmark from './Bookmark';
 
 const MyPage = () => {
   const [activeTab, setActiveTab] = useState('bookmarks');
@@ -30,7 +30,6 @@ const MyPage = () => {
         ) : (
           <div>
             <h2>내 정보</h2>
-            <p>준비 중입니다.</p>
           </div>
         )}
       </div>

@@ -43,7 +43,7 @@ interface ApiPost {
 
 interface PostContextType {
   posts: Post[] | null;
-  bookmarkedPosts: Post[] | null;
+  bookmarkedPosts: Post[] | null; // bookmark된 post
   paginator: number;
   isLoading: boolean;
   fetchPosts: (query: string) => Promise<void>;
@@ -137,12 +137,12 @@ export const PostProvider = ({ children }: PostProviderProps) => {
     }
   }, []);
 
-  const getBookmark = useCallback(async () => {
+  const getBookmark = useCallback(async () => { // bookmark된 post들 가져오는 함수
     setIsLoading(true);
     try {
       const response = await apiClient.get<{
         posts: ApiPost[];
-      }>('/api/post/bookmarks');
+      }>('/api/post/bookmarks'); // get posts
       const apiPosts = response.data.posts;
       const formattedPosts: Post[] = apiPosts.map((p: ApiPost) => ({
         id: p.id,
@@ -155,7 +155,7 @@ export const PostProvider = ({ children }: PostProviderProps) => {
         positionType: p.positionType,
         isBookmarked: p.isBookmarked, 
       }));
-      setBookmarkedPosts(formattedPosts);
+      setBookmarkedPosts(formattedPosts); // bookmard된 post 저장
     } catch (error) {
       console.error('Failed to fetch bookmarked posts:', error);
       setBookmarkedPosts(null);
