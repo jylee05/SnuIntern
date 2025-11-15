@@ -50,6 +50,7 @@ const InternCard = ({ post, onLoginRequired }: InternCardProps) => {
     const diffTime = utcEndDate - utcToday;
     const diffDays = diffTime / (1000 * 60 * 60 * 24);
 
+    if (post.employmentEndDate === null) return '상시채용';
     if (diffDays < 0) return '마감';
     if (diffDays === 0) return 'D-day';
     return `D-${diffDays}`;

@@ -22,7 +22,7 @@ const Topbar = () => {
       <div className="topbar-auth">
         {user ? (
           <>
-            <span>{user.name}님</span>
+            <Link to={'/mypage'}>마이페이지</Link>
             <button onClick={handleLogout} className="btn">
               로그아웃
             </button>
