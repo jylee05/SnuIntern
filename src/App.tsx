@@ -1,8 +1,8 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
-import Signup from './components/Signup';
 import MyPage from './components/MyPage';
+import Signup from './components/Signup';
 import Topbar from './components/Topbar';
 import { AuthProvider } from './contexts/AuthContext';
 import { PostProvider } from './contexts/PostContext';
@@ -17,7 +17,7 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
-            <Route path="/mypage" element={<MyPage />}/>
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </main>
       </PostProvider>

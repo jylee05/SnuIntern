@@ -137,7 +137,8 @@ export const PostProvider = ({ children }: PostProviderProps) => {
     }
   }, []);
 
-  const getBookmark = useCallback(async () => { // bookmark된 post들 가져오는 함수
+  const getBookmark = useCallback(async () => {
+    // bookmark된 post들 가져오는 함수
     setIsLoading(true);
     try {
       const response = await apiClient.get<{
@@ -153,7 +154,7 @@ export const PostProvider = ({ children }: PostProviderProps) => {
         domain: p.domain,
         detailSummary: p.detailSummary,
         positionType: p.positionType,
-        isBookmarked: p.isBookmarked, 
+        isBookmarked: p.isBookmarked,
       }));
       setBookmarkedPosts(formattedPosts); // bookmard된 post 저장
     } catch (error) {
