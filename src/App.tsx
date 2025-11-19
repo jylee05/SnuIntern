@@ -1,6 +1,7 @@
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
+import MyPage from './components/MyPage';
 import Signup from './components/Signup';
 import Topbar from './components/Topbar';
 import { AuthProvider } from './contexts/AuthContext';
@@ -16,6 +17,7 @@ const App = () => (
             <Route path="/" element={<Home />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
+            <Route path="/mypage" element={<MyPage />} />
           </Routes>
         </main>
       </PostProvider>
